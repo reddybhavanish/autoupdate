@@ -3,7 +3,6 @@
   "version": "1.0.6",
   "main": "main.js",
   "description": "electron-updater example project",
-  
   "scripts": {
     "dist-win": "electron-builder --publish never --win",
     "publish": "electron-builder -p always"
@@ -14,7 +13,7 @@
     "electron-notarize": "^1.1.1"
   },
   "dependencies": {
-    "electron-log": "^4.4.1",
+    "electron-log": "^4.2.4",
     "electron-updater": "^4.3.9"
   },
   "build": {
