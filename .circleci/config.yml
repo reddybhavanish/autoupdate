@@ -12,6 +12,10 @@ jobs:
             apt-get update
             apt-get install -y wine
       - run:
+          name: Install snapcraft
+          command: |
+            sudo snap install snapcraft --classic
+      - run:
           name: Install Dependencies
           command: npm install
       - run:
