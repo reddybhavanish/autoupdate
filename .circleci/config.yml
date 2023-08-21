@@ -10,7 +10,10 @@ jobs:
           name: Install Dependencies
           command: npm install
       - run:
-          name: Build and Deploy
+          name: Build 
+          command: npm run dist-win
+      - run:
+          name: Deploy
           command: npm run publish
 
 workflows:
