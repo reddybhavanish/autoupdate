@@ -7,13 +7,13 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Wine
+          command: sudo apt-get update && sudo apt-get install -y wine
+      - run:
           name: Install Dependencies
           command: npm install
       - run:
-          name: Build 
-          command: npm run dist-win
-      - run:
-          name: Deploy
+          name: Build and Deploy
           command: npm run publish
 
 workflows:
