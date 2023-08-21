@@ -14,7 +14,9 @@ jobs:
       - run:
           name: Install snapcraft
           command: |
-            sudo snap install snapcraft --classic
+            apt-get update
+            apt-get install -y snapd
+            snap install snapcraft --classic
       - run:
           name: Install Dependencies
           command: npm install
