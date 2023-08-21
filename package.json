@@ -1,10 +1,11 @@
 {
   "name": "electron-updater-example",
-  "version": "0.8.1",
+  "version": "1.0.6",
   "main": "main.js",
   "description": "electron-updater example project",
-  "author": "Matt Haggard",
+  
   "scripts": {
+    "dist-win": "electron-builder --publish never --win",
     "publish": "electron-builder -p always"
   },
   "devDependencies": {
@@ -17,20 +18,19 @@
     "electron-updater": "^4.3.9"
   },
   "build": {
-    "appId": "com.github.iffy.electronupdaterexample",
-    "afterSign": "./build/notarize.js",
-    "mac": {
-      "category": "your.app.category.type"
+    "publish": {
+      "provider": "s3",
+      "bucket": "bhavanish1",
+      "path": "etime/desktop/",
+      "region": "ap-south-1"
     },
     "win": {
       "target": "nsis"
     },
     "nsis": {
-      "oneClick": false
-    },
-    "linux": {
-      "category": "your.app.category.type",
-      "target": "AppImage"
+      "perMachine": true,
+      "oneClick": false,
+      "runAfterFinish": false
     }
   }
 }
