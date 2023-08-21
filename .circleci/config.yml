@@ -8,7 +8,9 @@ jobs:
       - checkout
       - run:
           name: Install Wine
-          command: sudo apt-get update && sudo apt-get install -y wine
+          command: |
+            apt-get update
+            apt-get install -y wine
       - run:
           name: Install Dependencies
           command: npm install
