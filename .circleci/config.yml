@@ -14,8 +14,6 @@ jobs:
           command: |
             npm install
             npm run dist-win
-            mkdir -p ~/repo/builds
-            mv dist ~/repo/builds
             pwd
             ls
 
@@ -37,10 +35,6 @@ jobs:
           command: |
             pwd
             ls
-      - run:
-         name: publish
-         command: |
-           npm run publish
 
       - aws-s3/sync: 
           install-aws-cli: true
