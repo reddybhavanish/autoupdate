@@ -34,7 +34,8 @@ jobs:
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
-           
+            cd /root/project/
+            ls
             pwd
             ls
             sudo cp -r /root/project/dist $HOME  # Copy the dist folder to the new working directory
