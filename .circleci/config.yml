@@ -11,6 +11,8 @@ jobs:
           command: |
             npm install
             npm run dist-win
+      - store_artifacts:
+          path: ~/repo/out/make
 
   deploy-windows:
     docker:
@@ -26,7 +28,7 @@ jobs:
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
-            aws s3 cp ./dist s3://your-bucket-name/etime/desktop/ --recursive
+            aws s3 cp ~/repo/out/make s3://your-bucket-name/etime/desktop/ --recursive
 
 workflows:
   version: 2
