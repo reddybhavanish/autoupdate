@@ -1,12 +1,7 @@
 version: 2.1
 
-orbs:
-  aws-cli: circleci/aws-cli@2.0.6
-  aws-s3: circleci/aws-s3@3.1.1
-  
-
 jobs:
-  build-windows:
+  build-deploy-windows:
     docker:
       - image: electronuserland/builder:wine
     steps:
@@ -17,43 +12,27 @@ jobs:
             npm install
             npm run dist-win
             pwd
-            ls 
+            ls
+            cp -r /root/project/dist $HOME  # Copy the dist folder to the new working directory
 
-  deploy-windows:
-    docker:
-      - image: circleci/python:3.7
-    steps:
-      - checkout
       - run:
           name: Install AWS CLI
           command: |
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             sudo ./aws/install
-            
+
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
-            cd /root/project/
-            ls
-            pwd
-            ls
-            sudo cp -r /root/project/dist $HOME  # Copy the dist folder to the new working directory
-            sudo cd /home/circleci/project  # Change to the correct working directory
+            cd /home/circleci/project  # Change to the correct working directory
             aws s3 sync ./dist s3://bhavanish/etime/desktop/
- 
-          
+
 workflows:
   version: 2
   build-deploy:
     jobs:
-      - build-windows:
-          filters:
-            branches:
-              only: master
-      - deploy-windows:
-          requires:
-            - build-windows
+      - build-deploy-windows:
           filters:
             branches:
               only: master
