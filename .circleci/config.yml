@@ -14,18 +14,14 @@ jobs:
           command: |
             npm install
             npm run dist-win
+            mkdir -p ~/repo/builds
+            mv dist ~/repo/builds
             pwd
             ls
-
-      - persist_to_workspace:
-          root: /root/project
-          paths:
-            - dist  # Persist the dist folder to be used in the deploy step
 
   deploy-windows:
     docker:
       - image: circleci/python:3.7
-     working_directory: /root/project  # Set the working directory to /root/project
 
     steps:
       - checkout
@@ -44,10 +40,10 @@ jobs:
 
       - aws-s3/sync: 
           install-aws-cli: true
-          aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
-          aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
-          aws-region: PARAM_AWS_CLI_REGION
-          from: /root/project/dist
+          aws-access-key-id: $PARAM_AWS_CLI_ACCESS_KEY_ID
+          aws-secret-access-key: $PARAM_AWS_CLI_SECRET_ACCESS_KEY
+          aws-region: $PARAM_AWS_CLI_REGION
+          from: ~/repo/builds/dist
           to: s3://bhavanish1/etime/desktop/
           when: on_success 
 
