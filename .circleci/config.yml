@@ -32,7 +32,7 @@ jobs:
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
-            aws s3 sync  s3://bhavanish1/etime/desktop/
+            aws s3 sync /home/circleci/project s3://bhavanish1/etime/desktop/
 
 workflows:
   version: 2
