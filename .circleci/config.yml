@@ -1,9 +1,14 @@
 version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@2.0.6
+  aws-s3: circleci/aws-s3@3.1.1
+  
 
 jobs:
   build-deploy-windows:
     docker:
       - image: electronuserland/builder:wine
+      - image: circleci/python:3.7
     steps:
       - checkout
       - run:
