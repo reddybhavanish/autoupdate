@@ -1,11 +1,5 @@
 version: 2.1
 
-orbs:
-  aws-cli: circleci/aws-cli@2.0.6
-  aws-s3: circleci/aws-s3@3.1.1
-
-#...
-
 jobs:
   build-windows:
     docker:
@@ -17,12 +11,8 @@ jobs:
           command: |
             npm install
             npm run dist-win
-
-      # Archive the build artifacts
-      - persist_to_workspace:
-          root: /root/project/dist
-          paths:
-            - latest.yml
+            pwd
+            ls 
 
   deploy-windows:
     docker:
@@ -36,15 +26,15 @@ jobs:
             unzip awscliv2.zip
             sudo ./aws/install
             
-      # Restore the build artifacts from the workspace
+      # Attach workspace and use the artifacts from build-windows
       - attach_workspace:
           at: /root/project
 
       - aws-s3/copy: 
           install-aws-cli: true
-          aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
-          aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
-          aws-region: PARAM_AWS_CLI_REGION
+          aws-access-key-id: $PARAM_AWS_CLI_ACCESS_KEY_ID
+          aws-secret-access-key: $PARAM_AWS_CLI_SECRET_ACCESS_KEY
+          aws-region: $PARAM_AWS_CLI_REGION
           from: /root/project/dist
           to: s3://bhavanish/etime/desktop/
           when: on_success
