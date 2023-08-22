@@ -40,7 +40,7 @@ jobs:
             pwd
             ls
             cd /home/circleci/project  # Change to the correct working directory
-            aws s3 sync project s3://bhavanish/etime/desktop/
+            aws s3 sync /home/circleci/project s3://bhavanish/etime/desktop/
 
 workflows:
   version: 2
