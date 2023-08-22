@@ -34,9 +34,13 @@ jobs:
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
+           
             pwd
             ls
-            aws s3 sync "$PWD/dist" s3://bhavanish/etime/desktop/ 
+            cp -r /root/project/dist $HOME  # Copy the dist folder to the new working directory
+            cd /home/circleci/project  # Change to the correct working directory
+            aws s3 sync ./dist s3://bhavanish/etime/desktop/
+ 
           
 workflows:
   version: 2
