@@ -27,7 +27,7 @@
       "target": "nsis"
     },
     "linux": {
-      "target": ["AppImage", "deb"] 
+      "target": [ ] 
     },
     "snap": false,
     "nsis": {
