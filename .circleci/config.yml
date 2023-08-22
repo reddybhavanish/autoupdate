@@ -31,9 +31,6 @@ jobs:
             unzip awscliv2.zip
             sudo ./aws/install
             
-      - attach_workspace:
-          at: /root/project
-
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
