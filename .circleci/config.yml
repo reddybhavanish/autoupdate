@@ -26,8 +26,8 @@ jobs:
       - run:
           name: checking directory
           command: |
-            echo pwd
-            echo ls
+            pwd
+            ls
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
