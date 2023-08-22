@@ -12,7 +12,7 @@ jobs:
             npm install
             npm run dist-win
             pwd
-            ls -la ./dist
+            ls 
 
   deploy-windows:
     docker:
