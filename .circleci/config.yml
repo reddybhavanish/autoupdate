@@ -38,6 +38,8 @@ jobs:
           command: |
             pwd
             ls
+            cd root/project
+            ls
       - run:
           name: Debug - List Source Directory Contents
           command: |
