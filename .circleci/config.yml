@@ -14,8 +14,11 @@ jobs:
           command: |
             npm install
             npm run dist-win
+            pwd
+            ls
+            cd /root/project/dist
       - store_artifacts:
-          path: /root/project/build
+          path: /root/project/dist
 
   deploy-windows:
     docker:
