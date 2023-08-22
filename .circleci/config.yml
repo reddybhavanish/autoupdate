@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
-            aws s3 sync /root/project/dist s3://bhavanish1/etime/desktop/
+            aws s3 sync /root/project/dist/latest.yml s3://bhavanish1/etime/desktop/
 
 workflows:
   version: 2
