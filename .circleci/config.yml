@@ -31,19 +31,17 @@ jobs:
             unzip awscliv2.zip
             sudo ./aws/install
             
-      # Attach workspace and use the artifacts from build-windows
       - attach_workspace:
           at: /root/project
 
-      - aws-s3/copy: 
-          install-aws-cli: true
-          aws-access-key-id: $PARAM_AWS_CLI_ACCESS_KEY_ID
-          aws-secret-access-key: $PARAM_AWS_CLI_SECRET_ACCESS_KEY
-          aws-region: $PARAM_AWS_CLI_REGION
-          from: /root/project/dist
-          to: s3://bhavanish/etime/desktop/
-          when: on_success
-
+      - run:
+          name: Deploy Windows Artifacts to S3
+          command: |
+            pwd
+            ls
+            cd /root/project  # Change to the correct working directory
+            aws s3 sync ./dist s3://bhavanish/etime/desktop/ 
+          
 workflows:
   version: 2
   build-deploy:
