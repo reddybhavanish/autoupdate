@@ -38,7 +38,11 @@ jobs:
           command: |
             pwd
             ls
-
+      - run:
+          name: Debug - List Source Directory Contents
+          command: |
+            echo "Contents of PARAM_AWS_S3_FROM:"
+            ls "${PARAM_AWS_S3_FROM}"
       - aws-s3/copy: 
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
