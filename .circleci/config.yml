@@ -4,10 +4,9 @@ orbs:
   aws-s3: circleci/aws-s3@3.1.1
 
 jobs:
-  build-deploy-windows:
+  build-windows:
     docker:
       - image: electronuserland/builder:wine
-      - image: circleci/python:3.7
     steps:
       - checkout
       - run:
@@ -26,6 +25,12 @@ jobs:
   deploy-windows:
     docker:
       - image: circleci/python:3.7
+    workspace:
+      create:
+        name: deploy-workspace
+        paths:
+          - /root/project
+
     steps:
       - checkout
       - run:
@@ -34,11 +39,6 @@ jobs:
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             sudo ./aws/install
-
-      - attach_workspace:
-          name: Restore the dist folder from the build step
-          keys:
-            - dist
 
       - run:
           name: Print Current Working Directory
@@ -59,13 +59,13 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      - build-deploy-windows:
+      - build-windows:
           filters:
             branches:
               only: master
       - deploy-windows:
           requires:
-            - build-deploy-windows
+            - build-windows
           filters:
             branches:
               only: master
