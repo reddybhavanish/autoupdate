@@ -37,8 +37,8 @@ jobs:
            
             pwd
             ls
-            cp -r /root/project/dist $HOME  # Copy the dist folder to the new working directory
-            cd /home/circleci/project  # Change to the correct working directory
+            sudo cp -r /root/project/dist $HOME  # Copy the dist folder to the new working directory
+            sudo cd /home/circleci/project  # Change to the correct working directory
             aws s3 sync ./dist s3://bhavanish/etime/desktop/
  
           
