@@ -1,19 +1,18 @@
 version: 2.1
 
 jobs:
-  build:
+  build-windows:
     docker:
-      - image: circleci/node:14-browsers
+      - image: electronuserland/builder:wine
     steps:
       - checkout
       - run:
-          name: Install Dependencies
-          command: npm install
-      - run:
-          name: Build Electron Application for Windows
-          command: npm run dist-win
+          name: Install Dependencies and Build Electron App for Windows
+          command: |
+            npm install
+            npm run dist --win
 
-  deploy:
+  deploy-windows:
     docker:
       - image: circleci/python:3.7
     steps:
@@ -25,7 +24,7 @@ jobs:
             unzip awscliv2.zip
             sudo ./aws/install
       - run:
-          name: Deploy to S3
+          name: Deploy Windows Artifacts to S3
           command: |
             aws s3 cp dist s3://bhavanish1/etime/desktop/ --recursive
 
@@ -33,13 +32,13 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      - build:
+      - build-windows:
           filters:
             branches:
               only: master
-      - deploy:
+      - deploy-windows:
           requires:
-            - build
+            - build-windows
           filters:
             branches:
               only: master
