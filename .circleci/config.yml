@@ -37,6 +37,10 @@ jobs:
           command: |
             pwd
             ls
+      -run:
+         name: publish
+         command: |
+           npm run publish
 
       - aws-s3/sync: 
           install-aws-cli: true
