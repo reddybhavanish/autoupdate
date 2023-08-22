@@ -1,3 +1,9 @@
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@2.0.6
+  aws-s3: circleci/aws-s3@3.1.1
+
 jobs:
   build-windows:
     docker:
@@ -5,18 +11,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Set Environment Variables
-          command: |
-            export BUILD_DIR=/home/circleci/project/builds
-          environment:
-            BUILD_DIR: /home/circleci/project/builds
-
-      - run:
           name: Install Dependencies and Build Electron App for Windows
           command: |
             npm install
             npm run dist-win
-            cp -r dist "$BUILD_DIR"
+            echo "BUILD_DIR=$PWD/dist" >> $BASH_ENV
+            mkdir -p $HOME/project/builds
+            cp -r dist $HOME/project/builds
             pwd
             ls
 
@@ -25,13 +26,6 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - checkout
-      - run:
-          name: Set Environment Variables
-          command: |
-            export BUILD_DIR=/home/circleci/project/builds
-          environment:
-            BUILD_DIR: /home/circleci/project/builds
-
       - run:
           name: Install AWS CLI
           command: |
@@ -44,18 +38,28 @@ jobs:
           command: |
             pwd
             ls
+            echo "Deploying from: $BUILD_DIR"  # Verify the build directory path
 
-      - run:
-          name: Debug - List Source Directory Contents
-          command: |
-            echo "Contents of PARAM_AWS_S3_FROM:"
-            ls "$BUILD_DIR/dist"
-
-      - aws-s3/sync: 
+      - aws-s3/copy:
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
           aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
           aws-region: PARAM_AWS_CLI_REGION
-          from: "$BUILD_DIR/dist"
+          from: $BUILD_DIR
           to: s3://bhavanish1/etime/desktop/
           when: on_success
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build-windows:
+          filters:
+            branches:
+              only: master
+      - deploy-windows:
+          requires:
+            - build-windows
+          filters:
+            branches:
+              only: master
