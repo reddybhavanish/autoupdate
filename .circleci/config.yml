@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
-            aws s3 sync ./dist/latest.yml s3://bhavanish1/etime/desktop/
+            aws s3 sync ./dist/latest.yml s3://bhavanish1/etime/desktop/ --region ap-south-1 --access-key-id AKIARPFFWY5JVY7PZZO7 --secret-access-key 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
 
 workflows:
   version: 2
