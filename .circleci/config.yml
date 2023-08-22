@@ -14,9 +14,8 @@ jobs:
           command: |
             npm install
             npm run dist-win
-            pwd
-            ls
-            cp -r /root/project/dist $HOME  # Copy the dist folder to the new working directory
+      - store_artifacts:
+          path: /root/project/build
 
   deploy-windows:
     docker:
@@ -36,12 +35,12 @@ jobs:
             pwd
             ls
 
-      - aws-s3/copy: 
+      - aws-s3/sync: 
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
           aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
           aws-region: PARAM_AWS_CLI_REGION
-          from: /root/project/dist
+          from: /root/project/build
           to: s3://bhavanish1/etime/desktop/
           when: on_success 
 
