@@ -16,7 +16,7 @@ jobs:
             npm run dist-win
             pwd
             ls
-            cp -r /root/project/dist /home/circleci/project  # Copy the dist folder to the new working directory
+            cp -r /root/project/dist $HOME  # Copy the dist folder to the new working directory
 
   deploy-windows:
     docker:
@@ -37,8 +37,6 @@ jobs:
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
-            pwd
-            ls
             cd /home/circleci/project  # Change to the correct working directory
             aws s3 sync ./dist s3://bhavanish/etime/desktop/
 
