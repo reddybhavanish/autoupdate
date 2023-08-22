@@ -36,9 +36,7 @@ jobs:
           command: |
             pwd
             ls
-            chmod -R 755 /root/project
-            cd /root/project  # Change to the correct working directory
-            aws s3 sync ./dist s3://bhavanish/etime/desktop/ 
+            aws s3 sync "$PWD/dist" s3://bhavanish/etime/desktop/ 
           
 workflows:
   version: 2
