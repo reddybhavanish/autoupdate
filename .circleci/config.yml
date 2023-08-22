@@ -3,47 +3,8 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@2.0.6
   aws-s3: circleci/aws-s3@3.1.1
-  
 
 #...
-copy:
-    description: copy directories and S3 prefixes.
-    parameters:
-        arguments:
-            default: ""
-            description: |
-                Optional additional arguments to pass to the `aws sync` command (e.g., `--acl public-read`). Note: if passing a multi-line value to this parameter, include `\` characters after each line, so the Bash shell can correctly interpret the entire command.
-            type: string
-        aws-access-key-id:
-            default: AWS_ACCESS_KEY_ID
-            description: aws access key id override
-            type: env_var_name
-        aws-region:
-            default: AWS_REGION
-            description: aws region override
-            type: env_var_name
-        aws-secret-access-key:
-            default: AWS_SECRET_ACCESS_KEY_ID
-            description: aws secret access key override
-            type: env_var_name
-        from:
-            description: A local *directory* path to copy with S3
-            type: string
-        to:
-            description: A URI to an S3 bucket, i.e. 's3://the-name-my-bucket '
-            type: string
-    steps:
-        environment:
-          PARAM_AWS_CLI_ACCESS_KEY_ID: parameters.aws-access-key-id
-          # PARAM_AWS_CLI_CONFIG_DEFAULT_REGION: <<parameters.configure-default-region>>
-          # PARAM_AWS_CLI_CONFIG_PROFILE_REGION: <<parameters.configure-profile-region>>
-          # PARAM_AWS_CLI_PROFILE_NAME: <<parameters.profile-name>>
-          PARAM_AWS_CLI_REGION: parameters.aws-region
-          # PARAM_AWS_CLI_ROLE_ARN: parameters.role-arn
-          PARAM_AWS_CLI_SECRET_ACCESS_KEY: parameters.aws-secret-access-key
-        name: Configure AWS SetUp
-#...
-
 
 jobs:
   build-windows:
@@ -56,8 +17,12 @@ jobs:
           command: |
             npm install
             npm run dist-win
-            pwd
-            ls 
+
+      # Archive the build artifacts
+      - persist_to_workspace:
+          root: /root/project/dist
+          paths:
+            - latest.yml
 
   deploy-windows:
     docker:
@@ -71,14 +36,19 @@ jobs:
             unzip awscliv2.zip
             sudo ./aws/install
             
+      # Restore the build artifacts from the workspace
+      - attach_workspace:
+          at: /root/project
+
       - aws-s3/copy: 
           install-aws-cli: true
-          aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
-          aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
-          aws-region: PARAM_AWS_CLI_REGION
+          aws-access-key-id: $PARAM_AWS_CLI_ACCESS_KEY_ID
+          aws-secret-access-key: $PARAM_AWS_CLI_SECRET_ACCESS_KEY
+          aws-region: $PARAM_AWS_CLI_REGION
           from: /root/project/dist
           to: s3://bhavanish/etime/desktop/
           when: on_success
+
 workflows:
   version: 2
   build-deploy:
