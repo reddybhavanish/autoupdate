@@ -28,6 +28,7 @@ jobs:
           command: |
             pwd
             ls
+            cd build
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
