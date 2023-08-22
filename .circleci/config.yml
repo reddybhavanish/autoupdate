@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
-            aws s3 cp dist s3://bhavanish1/etime/desktop/ --recursive
+            npm run publish
 
 workflows:
   version: 2
