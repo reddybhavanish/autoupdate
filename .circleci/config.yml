@@ -10,7 +10,7 @@ jobs:
           name: Install Dependencies and Build Electron App for Windows
           command: |
             npm install
-            npm run dist --win
+            npm run dist-win
 
   deploy-windows:
     docker:
