@@ -14,9 +14,6 @@ jobs:
           command: |
             npm install
             npm run dist-win
-            pwd
-            ls
-            cp -r /root/project/dist $HOME  # Copy the dist folder to the new working directory
             echo "DIST_COPIED=true" >> $BASH_ENV  # Set an environment variable to indicate dist was copied
 
   deploy-windows:
