@@ -27,8 +27,7 @@ jobs:
           name: checking directory
           command: |
             pwd
-            ls
-            cd build
+            dir
             ls
       - run:
           name: Deploy Windows Artifacts to S3
