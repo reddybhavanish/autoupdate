@@ -39,7 +39,7 @@ jobs:
             pwd
             ls
 
-      - aws-s3/sync: 
+      - aws-s3/copy: 
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
           aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
