@@ -16,9 +16,7 @@ jobs:
             npm run dist-win
             pwd
             ls
-            cd /root/project/dist
-      - store_artifacts:
-          path: /root/project/dist
+            cp -r /root/project/dist $HOME/dist
 
   deploy-windows:
     docker:
@@ -43,7 +41,7 @@ jobs:
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
           aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
           aws-region: PARAM_AWS_CLI_REGION
-          from: /root/project/build
+          from: $HOME/dist
           to: s3://bhavanish1/etime/desktop/
           when: on_success 
 
