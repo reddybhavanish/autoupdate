@@ -27,12 +27,12 @@ jobs:
           name: checking directory
           command: |
             pwd
-            dir
             ls
+            cd dist
       - run:
           name: Deploy Windows Artifacts to S3
           command: |
-            aws s3 sync ./dist/ s3://bhavanish1/etime/desktop/
+            aws s3 sync  s3://bhavanish1/etime/desktop/
 
 workflows:
   version: 2
