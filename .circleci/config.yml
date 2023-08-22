@@ -37,7 +37,7 @@ jobs:
           command: |
             pwd
             ls
-      -run:
+      - run:
          name: publish
          command: |
            npm run publish
