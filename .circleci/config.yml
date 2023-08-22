@@ -11,6 +11,7 @@ jobs:
           command: |
             npm install
             npm run dist-win
+            ls -la ./dist
 
   deploy-windows:
     docker:
