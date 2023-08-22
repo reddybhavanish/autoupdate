@@ -4,9 +4,10 @@ orbs:
   aws-s3: circleci/aws-s3@3.1.1
 
 jobs:
-  build-windows:
+  build-deploy-windows:
     docker:
       - image: electronuserland/builder:wine
+      - image: circleci/python:3.7
     steps:
       - checkout
       - run:
@@ -14,7 +15,13 @@ jobs:
           command: |
             npm install
             npm run dist-win
-            echo "DIST_COPIED=true" >> $BASH_ENV  # Set an environment variable to indicate dist was copied
+            pwd
+            ls
+
+      - persist_to_workspace:
+          root: /root/project
+          paths:
+            - dist  # Persist the dist folder to be used in the deploy step
 
   deploy-windows:
     docker:
@@ -28,42 +35,37 @@ jobs:
             unzip awscliv2.zip
             sudo ./aws/install
 
+      - restore_workspace:
+          name: Restore the dist folder from the build step
+          keys:
+            - dist
+
       - run:
           name: Print Current Working Directory
           command: |
             pwd
             ls
 
-      - run:
-          name: Check if dist was copied
-          command: |
-            if [ -n "$DIST_COPIED" ]; then
-              echo "Dist was copied"
-            else
-              echo "Dist was not copied"
-            fi
-
-      - run:
-          name: Deploy Windows Artifacts to S3
-          command: |
-            if [ -n "$DIST_COPIED" ]; then
-              aws s3 sync ./dist s3://bhavanish1/etime/desktop/
-            else
-              echo "Skipping deployment because dist was not copied"
-            fi
+      - aws-s3/sync: 
+          install-aws-cli: true
+          aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
+          aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
+          aws-region: PARAM_AWS_CLI_REGION
+          from: /root/project/dist
+          to: s3://bhavanish1/etime/desktop/
           when: on_success 
 
 workflows:
   version: 2
   build-deploy:
     jobs:
-      - build-windows:
+      - build-deploy-windows:
           filters:
             branches:
               only: master
       - deploy-windows:
           requires:
-            - build-windows
+            - build-deploy-windows
           filters:
             branches:
               only: master
