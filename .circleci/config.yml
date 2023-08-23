@@ -33,7 +33,7 @@ jobs:
       - image: electronuserland/builder
     steps:
       - checkout
-      -run:
+      - run:
          name: Install Dependencies and Build Electron App for Mac
           command: |
             npm install
