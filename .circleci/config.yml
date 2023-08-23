@@ -20,7 +20,7 @@ jobs:
             cd dist
             ls
 
-      - aws-s3/cp:
+      - aws-s3/sync:
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
           aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
@@ -28,7 +28,7 @@ jobs:
           from: /root/project/dist/latest.yml
           to: s3://bhavanish1/etime/desktop/
           when: on_success
-      - aws-s3/cp:
+      - aws-s3/sync:
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
           aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
@@ -36,7 +36,7 @@ jobs:
           from: /root/project/dist/electron-updater-example Setup 1.0.8.exe
           to: s3://bhavanish1/etime/desktop/
           when: on_success
-      - aws-s3/cp:
+      - aws-s3/sync:
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
           aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
