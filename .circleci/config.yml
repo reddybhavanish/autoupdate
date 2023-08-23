@@ -60,13 +60,8 @@ workflows:
             branches:
               only: master
       - build-mac:
-
           requires:
-
             - build-windows
-
           filters:
-
             branches:
-
               only: master
