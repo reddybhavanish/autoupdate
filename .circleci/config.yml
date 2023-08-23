@@ -17,8 +17,8 @@ jobs:
             npm run dist-win
             pwd
             ls
-            
-      - aws-s3/copy:
+
+      - aws-s3/sync:
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
           aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
