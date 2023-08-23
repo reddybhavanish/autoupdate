@@ -17,19 +17,7 @@ jobs:
             npm run dist-win
             pwd
             ls
-
-  deploy-windows:
-    docker:
-      - image: electronuserland/builder:wine
-    steps:
-      - checkout
-
-      - run:
-          name: Print Current Working Directory
-          command: |
-            pwd
-            ls
-
+            
       - aws-s3/copy:
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
@@ -47,9 +35,4 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy-windows:
-          requires:
-            - build-windows
-          filters:
-            branches:
-              only: master
+     
