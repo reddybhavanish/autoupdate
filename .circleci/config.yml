@@ -35,7 +35,7 @@ jobs:
       - checkout
       - run:
          name: Install Dependencies and Build Electron App for Mac
-          command: |
+         command: |
             npm install
             npm run dist-mac
             pwd
