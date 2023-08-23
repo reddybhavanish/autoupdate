@@ -15,12 +15,19 @@ jobs:
           command: |
             npm install
             npm run dist-win
+            pwd
+            ls
+            cd dist
+            ls
+      - run:
+          name: Install Dependencies and Build Electron App for Mac
+          command: |
+            npm install
             npm run dist-mac
             pwd
             ls
             cd dist
             ls
-
       - aws-s3/sync:
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
