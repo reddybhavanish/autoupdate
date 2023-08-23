@@ -18,6 +18,7 @@ jobs:
             pwd
             ls
             cd dist
+            ls
 
       - aws-s3/sync:
           install-aws-cli: true
