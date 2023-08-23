@@ -24,7 +24,19 @@
       "region": "ap-south-1"
     },
     "win": {
-      "target": "nsis"
+      "target": [
+        "nsis",
+        "msi",
+        "portable",
+        "appx"
+          ]
+    },
+    "mac": {
+      "target": [
+        "pkg",
+        "dmg",
+        "zip"
+      ]
     },
     "linux": {
       "target": [ ] 
