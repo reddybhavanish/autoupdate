@@ -5,6 +5,7 @@
   "description": "electron-updater example project",
   "scripts": {
     "dist-win": "electron-builder --publish never --win",
+    "dist-mac": "electron-builder --publish never --win",
     "publish": "electron-builder -p always"
   },
   "devDependencies": {

@@ -15,7 +15,7 @@ jobs:
           command: |
             npm install
             npm run dist-win
-            npm run 
+            npm run dist-mac
             pwd
             ls
             cd dist
