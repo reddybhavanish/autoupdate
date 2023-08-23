@@ -28,8 +28,7 @@
       "target": [
         "nsis",
         "msi",
-        "portable",
-        "appx"
+        "portable"
           ]
     },
     "mac": {
