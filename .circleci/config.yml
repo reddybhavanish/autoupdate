@@ -17,6 +17,7 @@ jobs:
             npm run dist-win
             pwd
             ls
+            cd dist
 
       - aws-s3/sync:
           install-aws-cli: true
