@@ -15,9 +15,6 @@ jobs:
           command: |
             npm install
             npm run dist-win
-            echo "BUILD_DIR=$PWD/dist" >> $BASH_ENV
-            mkdir -p $HOME/project/builds
-            cp -r dist $HOME/project/builds
             pwd
             ls
 
@@ -26,26 +23,19 @@ jobs:
       - image: electronuserland/builder:wine
     steps:
       - checkout
-      - run:
-          name: Install AWS CLI
-          command: |
-            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-            unzip awscliv2.zip
-            ./aws/install  # No need for sudo
 
       - run:
           name: Print Current Working Directory
           command: |
             pwd
             ls
-            echo "Deploying from: $BUILD_DIR"  # Verify the build directory path
 
       - aws-s3/copy:
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
           aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
           aws-region: PARAM_AWS_CLI_REGION
-          from: $BUILD_DIR
+          from: /root/project/dist/
           to: s3://bhavanish1/etime/desktop/
           when: on_success
 
