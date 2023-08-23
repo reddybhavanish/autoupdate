@@ -7,7 +7,7 @@ orbs:
 jobs:
   build-windows:
     docker:
-      - image: electronuserland/builder:wine
+      - image: electronuserland/builder
     steps:
       - checkout
       - run:
