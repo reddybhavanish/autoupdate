@@ -27,13 +27,11 @@
     "win": {
       "target": [
         "nsis",
-        "portable",
-        "msi"
+        "portable"
           ]
     },
     "mac": {
       "target": [
-        "pkg",
         "zip"
       ]
     },
