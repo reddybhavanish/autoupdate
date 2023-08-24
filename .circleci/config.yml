@@ -30,7 +30,7 @@ jobs:
 
   build-mac:
     docker:
-      - image: electronuserland/builder:mac
+      - image: electronuserland/builder
     steps:
       - checkout
       - run:

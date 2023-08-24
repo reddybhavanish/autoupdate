@@ -33,7 +33,6 @@
     "mac": {
       "target": [
         "pkg",
-        "dmg",
         "zip"
       ]
     },
