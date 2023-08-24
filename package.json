@@ -27,7 +27,9 @@
     "win": {
       "target": [
         "nsis",
-        "portable"
+        "portable",
+        "msi",
+        "appx"
           ]
     },
     "mac": {
