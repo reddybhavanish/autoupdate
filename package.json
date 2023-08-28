@@ -14,7 +14,6 @@
     "electron-notarize": "^1.1.1"
   },
   "dependencies": {
-    "dmg-license": "^1.0.11",
     "electron-log": "^4.2.4",
     "electron-updater": "^4.3.9"
   },
