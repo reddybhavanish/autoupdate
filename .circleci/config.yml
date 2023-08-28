@@ -29,8 +29,13 @@ jobs:
           when: on_success
 
   build-mac:
+<<<<<<< HEAD
      docker:
       - image: electronuserland/builder:wine
+=======
+    macos:
+      xcode: "12.5.0"
+>>>>>>> 5f79f6ec0cae42717e95a0305637ae848aebffba
     steps:
       - checkout
       - run:

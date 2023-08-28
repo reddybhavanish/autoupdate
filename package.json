@@ -33,6 +33,7 @@
     },
     "mac": {
       "target": [
+<<<<<<< HEAD
         "zip",
         "dmg",
         "pkg"
@@ -46,6 +47,9 @@
         "pkg",
         "zip"
 >>>>>>> parent of ad6aa71 (a)
+=======
+        "zip"
+>>>>>>> 5f79f6ec0cae42717e95a0305637ae848aebffba
       ]
     },
     "linux": {
