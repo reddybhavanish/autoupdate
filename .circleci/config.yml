@@ -29,18 +29,10 @@ jobs:
           when: on_success
 
   build-mac:
-    macos:
-      xcode: "14.1.0"
+     docker:
+      - image: electronuserland/builder:wine
     steps:
       - checkout
-      - run:
-          name: Install Node.js and npm
-          command: |
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-            source ~/.nvm/nvm.sh
-            nvm install 14 # Choose the Node.js version you need
-            node --version
-            npm --version
       - run:
          name: Install Dependencies and Build Electron App for Mac
          command: |

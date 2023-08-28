@@ -27,6 +27,7 @@
     "win": {
       "target": [
         "nsis",
+<<<<<<< HEAD
         "portable"
       ]
     },
@@ -35,6 +36,16 @@
         "zip",
         "dmg",
         "pkg"
+=======
+        "portable",
+        "msi"
+          ]
+    },
+    "mac": {
+      "target": [
+        "pkg",
+        "zip"
+>>>>>>> parent of ad6aa71 (a)
       ]
     },
     "linux": {
