@@ -28,6 +28,7 @@
       "target": [
         "nsis",
 <<<<<<< HEAD
+<<<<<<< HEAD
         "portable"
       ]
     },
@@ -38,6 +39,8 @@
         "dmg",
         "pkg"
 =======
+=======
+>>>>>>> parent of ad6aa71 (a)
         "portable",
         "msi"
           ]
