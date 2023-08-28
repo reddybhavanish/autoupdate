@@ -32,7 +32,9 @@
     },
     "mac": {
       "target": [
-        "zip"
+        "zip",
+        "dmg",
+        "pkg"
       ]
     },
     "linux": {
