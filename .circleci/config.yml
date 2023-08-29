@@ -37,6 +37,7 @@ jobs:
          name: Install Dependencies and Build Electron App for Mac
          command: |
            npm install
+           npm install dmg-license
            npm run dist-mac
            pwd
            ls
