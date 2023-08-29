@@ -46,7 +46,11 @@ jobs:
             pwd
             ls
 
-      
+      - run:
+          name: Install Python
+          command: |
+            brew update
+            brew install python
 
       - aws-s3/sync:
           install-aws-cli: true
