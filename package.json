@@ -32,7 +32,8 @@
     },
     "mac": {
       "target": [
-        "zip"
+        "zip",
+        "pkg"
 
       ]
     },
