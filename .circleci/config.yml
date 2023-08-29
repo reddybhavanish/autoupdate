@@ -29,19 +29,23 @@ jobs:
           when: on_success
 
   build-mac:
-    docker:
-      - image: electronuserland/builder
+    macos:
+      xcode: "14.1.0"
     steps:
       - checkout
       - run:
-         name: Install Dependencies and Build Electron App for Mac
-         command: |
-           npm install
-           npm run dist-mac
-           pwd
-           ls
-           cd dist
-           ls
+          name: Install Node.js and npm
+          command: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+            source ~/.nvm/nvm.sh
+            nvm install 14 # Choose the Node.js version you need
+            node --version
+            npm --version
+            npm install
+            npm run dist-mac
+
+      
+
       - aws-s3/sync:
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
