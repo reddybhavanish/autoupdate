@@ -31,6 +31,8 @@ jobs:
   build-mac:
     macos:
       xcode: "14.1.0"
+    environment:
+      PYTHON: /Users/distiller/project/python/bin/python
     steps:
       - checkout
       - run:
