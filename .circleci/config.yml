@@ -40,6 +40,8 @@ jobs:
             brew install python
             pwd
             ls
+            cd usr/bin/python
+            ls
       - run:
           name: Install Node.js and npm
           command: |
