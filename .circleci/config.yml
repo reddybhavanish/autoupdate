@@ -30,7 +30,7 @@ jobs:
 
   build-mac:
     macos:
-      xcode: "14.1.0"
+      xcode: "14.3.1"
     steps:
       - checkout
       - run:
