@@ -56,7 +56,7 @@ jobs:
             npm run dist-mac
             pwd
             ls
-       - run:
+      - run:
           name: Set Python Path
           command: echo 'export PATH="/usr/local/opt/python/libexec/bin:$PATH"' >> $HOME/.bashrc
 
