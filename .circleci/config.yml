@@ -44,8 +44,9 @@ jobs:
             python --version
             pwd
             ls
+            sudo mv /usr/local/bin/python3 /usr/bin/python3
             cd /usr/bin/
-            ls
+            ls 
       - run:
           name: Install Node.js and npm
           command: |
