@@ -24,7 +24,7 @@ jobs:
             ls
       - run:
           name: Set Python Path
-          command: echo 'export PATH="/usr/local/opt/python/libexec/bin:$PATH"' >> $BASH_ENV
+          command: echo 'export PATH="/usr/local/opt/python/libexec/bin:$PATH"' >> $HOME/.bashrc
       - aws-s3/sync:
           install-aws-cli: true
           aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
