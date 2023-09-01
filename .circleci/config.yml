@@ -39,15 +39,11 @@ jobs:
       - run:
           name: Install Python
           command: |
-            mkdir /usr/bin/
-            cd /usr/bin/
             brew update
             brew install python
+            python --version
             pwd
             ls
-      - run:
-          name: Set Python Path
-          command: echo 'export PATH="/usr/local/opt/python/libexec/bin:$PATH"' >> $HOME/.bashrc
       - run:
           name: Install Node.js and npm
           command: |
