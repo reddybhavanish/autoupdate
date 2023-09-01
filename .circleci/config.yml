@@ -38,16 +38,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Python
-          command: |
-            brew update
-            brew install python
-            pwd
-            ls
-      - run:
           name: Install Node.js and npm
           command: |
             npm install
+            npm install dmg-license
             npm run dist-mac
             pwd
             ls
