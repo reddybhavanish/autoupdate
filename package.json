@@ -9,7 +9,7 @@
     "publish": "electron-builder -p always"
   },
   "devDependencies": {
-    "electron": "^14.0.1",
+    "electron": "^26.1.0",
     "electron-builder": "^22.11.7",
     "electron-notarize": "^1.1.1"
   },
@@ -35,7 +35,6 @@
         "zip",
         "pkg",
         "dmg"
-
       ]
     },
     "linux": {
