@@ -44,6 +44,8 @@ jobs:
             python --version
             pwd
             ls
+            cd /usr/bin/
+            ls
       - run:
           name: Install Node.js and npm
           command: |
