@@ -45,6 +45,9 @@ jobs:
             pwd
             ls
       - run:
+          name: Set Python Path
+          command: echo 'export PATH="/usr/local/opt/python/libexec/bin:$PATH"' >> $HOME/.bashrc
+      - run:
           name: Install Node.js and npm
           command: |
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
@@ -56,9 +59,7 @@ jobs:
             npm run dist-mac
             pwd
             ls
-      - run:
-          name: Set Python Path
-          command: echo 'export PATH="/usr/local/opt/python/libexec/bin:$PATH"' >> $HOME/.bashrc
+      
 
       - aws-s3/sync:
           install-aws-cli: true
