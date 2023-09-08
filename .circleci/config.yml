@@ -44,7 +44,7 @@ jobs:
             python --version
             pwd
             ls
-            sudo mv /usr/local/bin/python3 /usr/bin/python3
+            sudo cp /usr/local/bin/python3 /usr/bin/python3
             cd /usr/bin/
             ls 
       - run:
