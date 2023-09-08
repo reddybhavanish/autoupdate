@@ -44,6 +44,7 @@ jobs:
             python --version
             pwd
             ls
+            chmod 777 /usr/local/bin/python3
             sudo cp /usr/local/bin/python3 /usr/bin/python3
             cd /usr/bin/
             ls 
