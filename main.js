@@ -4,7 +4,13 @@
 const {app, BrowserWindow, Menu} = require('electron');
 const log = require('electron-log');
 const {autoUpdater} = require("electron-updater");
+const AWS = require("aws-sdk")
 
+AWS.config.update({
+  accessKeyId : "AKIARPFFWY5JVY7PZZO7",
+  secretAccessKey : "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",
+  region: "ap-south-1"
+})
 //-------------------------------------------------------------------
 // Logging
 //

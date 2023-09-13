@@ -12,6 +12,8 @@ jobs:
       - image: electronuserland/builder:wine
     steps:
       - checkout
+      
+
       - run:
           name: Install Dependencies and Build Electron App for Windows
           command: |
