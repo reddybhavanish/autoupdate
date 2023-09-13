@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.1456.0",
+    "config": "^3.3.9",
     "electron-log": "^4.2.4",
     "electron-updater": "^4.3.9"
   },

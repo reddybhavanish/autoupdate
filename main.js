@@ -3,6 +3,7 @@
 
 const {app, BrowserWindow, Menu} = require('electron');
 const log = require('electron-log');
+const config = require('config')
 const {autoUpdater} = require("electron-updater");
 const AWS = require("aws-sdk")
 
