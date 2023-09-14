@@ -12,6 +12,7 @@ AWS.config.update({
   secretAccessKey : "lD5WHd+yUqvbiR/7Jor2El4VOPuYlATrhUQlVQnF",
   region: "ap-south-1"
 })
+log.info("AWS.config.update")
 //-------------------------------------------------------------------
 // Logging
 //
