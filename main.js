@@ -17,22 +17,25 @@ log.info("AWS.config.update.accessKeyId: ", process.env.AWS_ACCESS_KEY_ID);
 log.info("AWS.config.update.secretAccessKeyId: ",process.env.AWS_SECRET_ACCESS_KEY);
 
 
-const bucketName = 'bhavanish1';
-const fileName = './sample.txt';
-const fileData = fs.readFileSync(fileName);
+const s3 = new AWS.S3();
 
-const s3 = new AWS.s3();
-s3.upload({
-  Bucket: bucketName,
-  Key: fileName,
-  Body: fileData
-}, (err, data) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(`File uploaded successfully. ${data.Location}`);
-  }
-});
+function listS3Objects() {
+  const params = {
+    Bucket: bhavanish1,
+  };
+
+  s3.listObjects(params, (err, data) => {
+    if (err) {
+      console.error("Error listing objects:", err);
+    } else {
+      console.log("Objects in the S3 bucket:");
+      for (const obj of data.Contents) {
+        console.log(obj.Key);
+      }
+    }
+  });
+}
+listS3Objects();
 
 //-------------------------------------------------------------------
 // Logging
