@@ -8,11 +8,12 @@ const {autoUpdater} = require("electron-updater");
 const AWS = require("aws-sdk")
 
 AWS.config.update({
-  accessKeyId : "AKIARPFFWY5JVY7PZZO7",
-  secretAccessKey : "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",
+  accessKeyId : process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey : process.env.AWS_SECRET_ACCESS_KEY,
   region: "ap-south-1"
 })
-log.info("AWS.config.update")
+log.info("AWS.config.update.accessKeyId: ", process.env.AWS_ACCESS_KEY_ID);
+log.info("AWS.config.update.secretAccessKeyId: ",process.env.AWS_SECRET_ACCESS_KEY);
 //-------------------------------------------------------------------
 // Logging
 //
