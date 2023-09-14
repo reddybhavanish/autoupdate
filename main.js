@@ -6,6 +6,7 @@ const log = require('electron-log');
 const config = require('config')
 const {autoUpdater} = require("electron-updater");
 const AWS = require("aws-sdk")
+const fs = require("fs");
 
 AWS.config.update({
   accessKeyId : process.env.AWS_ACCESS_KEY_ID,
@@ -15,13 +16,23 @@ AWS.config.update({
 log.info("AWS.config.update.accessKeyId: ", process.env.AWS_ACCESS_KEY_ID);
 log.info("AWS.config.update.secretAccessKeyId: ",process.env.AWS_SECRET_ACCESS_KEY);
 
-autoUpdater.setFeedURL({
-  provider: 's3',
-  url: "https://bhavanish1.s3.ap-south-1.amazonaws.com/etime/desktop/electron-updater-example+Setup+1.1.31.exe"
+
+const bucketName = 'bhavanish1';
+const fileName = './sample.txt';
+const fileData = fs.readFileSync(fileName);
+
+s3.upload({
+  Bucket: bucketName,
+  Key: fileName,
+  Body: fileData
+}, (err, data) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(`File uploaded successfully. ${data.Location}`);
+  }
 });
 
-const s3 = new AWS.S3();
-const bucketName = "bhavanish1";
 //-------------------------------------------------------------------
 // Logging
 //
