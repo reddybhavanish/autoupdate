@@ -7,6 +7,7 @@ const config = require('config')
 const {autoUpdater} = require("electron-updater");
 const AWS = require("aws-sdk")
 const fs = require("fs");
+const bucketname = 'bhavanish1'
 
 AWS.config.update({
   accessKeyId : process.env.AWS_ACCESS_KEY_ID,
