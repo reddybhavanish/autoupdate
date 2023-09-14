@@ -14,6 +14,14 @@ AWS.config.update({
 })
 log.info("AWS.config.update.accessKeyId: ", process.env.AWS_ACCESS_KEY_ID);
 log.info("AWS.config.update.secretAccessKeyId: ",process.env.AWS_SECRET_ACCESS_KEY);
+
+autoUpdater.setFeedURL({
+  provider: 's3',
+  url: 'https://bhavanish1.s3.amazonaws.com/etime/desktop/latest.yml'
+});
+
+const s3 = new AWS.S3();
+const bucketName = "bhavanish1";
 //-------------------------------------------------------------------
 // Logging
 //
