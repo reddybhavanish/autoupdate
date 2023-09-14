@@ -17,7 +17,7 @@ log.info("AWS.config.update.secretAccessKeyId: ",process.env.AWS_SECRET_ACCESS_K
 
 autoUpdater.setFeedURL({
   provider: 's3',
-  url: 'https://bhavanish1.s3.amazonaws.com/etime/desktop/latest.yml'
+  url: "https://bhavanish1.s3.ap-south-1.amazonaws.com/etime/desktop/electron-updater-example+Setup+1.1.31.exe"
 });
 
 const s3 = new AWS.S3();
