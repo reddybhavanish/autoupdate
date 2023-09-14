@@ -23,6 +23,7 @@ const s3 = new AWS.S3();
 function listS3Objects() {
   const params = {
     Bucket: bucketname,
+    Prefix: "etime/desktop",
   };
 
   s3.listObjects(params, (err, data) => {
