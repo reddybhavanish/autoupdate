@@ -7,6 +7,7 @@ const config = require('config')
 const {autoUpdater} = require("electron-updater");
 const AWS = require("aws-sdk")
 const fs = require("fs");
+const aws4 = require("aws4");
 const bucketname = 'bhavanish1'
 
 AWS.config.update({
