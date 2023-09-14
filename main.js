@@ -21,6 +21,7 @@ const bucketName = 'bhavanish1';
 const fileName = './sample.txt';
 const fileData = fs.readFileSync(fileName);
 
+const s3 = new AWS.s3();
 s3.upload({
   Bucket: bucketName,
   Key: fileName,
