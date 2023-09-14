@@ -118,8 +118,8 @@ autoUpdater.on("checking-for-update", async () => {
   };
 
   await aws4.sign(opts, {
-    accessKeyId: "process.env.AWS_ACCESS_KEY_ID",
-    secretAccessKey: "process.env.AWS_SECRET_ACCESS_KEY"
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   });
 
   autoUpdater.requestHeaders = opts.headers;
