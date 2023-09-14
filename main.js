@@ -39,6 +39,8 @@ function listS3Objects() {
 }
 listS3Objects();
 
+
+
 //-------------------------------------------------------------------
 // Logging
 //
@@ -106,9 +108,22 @@ function createDefaultWindow() {
   win.loadURL(`file://${__dirname}/version.html#v${app.getVersion()}`);
   return win;
 }
-autoUpdater.on('checking-for-update', () => {
-  sendStatusToWindow('Checking for update...');
-})
+autoUpdater.on("checking-for-update", async () => {
+  let opts = {
+    region: "ap-south-1",
+    protocol: "https:",
+    hostname: "bhavanish1.s3.amazonaws.com",
+    path: "/etime/desktop/latest.yml",
+    host: "s3-ap-south-1.amazonaws.com"
+  };
+
+  await aws4.sign(opts, {
+    accessKeyId: "process.env.AWS_ACCESS_KEY_ID",
+    secretAccessKey: "process.env.AWS_SECRET_ACCESS_KEY"
+  });
+
+  autoUpdater.requestHeaders = opts.headers;
+});
 autoUpdater.on('update-available', (info) => {
   sendStatusToWindow('Update available.');
 })
