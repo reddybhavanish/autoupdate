@@ -22,7 +22,7 @@ const s3 = new AWS.S3();
 
 function listS3Objects() {
   const params = {
-    Bucket: bhavanish1,
+    Bucket: bucketname,
   };
 
   s3.listObjects(params, (err, data) => {
