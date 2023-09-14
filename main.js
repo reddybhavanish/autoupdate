@@ -28,11 +28,11 @@ function listS3Objects() {
 
   s3.listObjects(params, (err, data) => {
     if (err) {
-      console.error("Error listing objects:", err);
+      log.error("Error listing objects:", err);
     } else {
       console.log("Objects in the S3 bucket:");
       for (const obj of data.Contents) {
-        console.log(obj.Key);
+        log.info(obj.Key);
       }
     }
   });
