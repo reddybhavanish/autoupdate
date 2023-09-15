@@ -40,10 +40,7 @@ function listS3Objects() {
 }
 listS3Objects();
 
-autoUpdater.setFeedURL({
-  provider: 's3',
-  url: 's3://bhavanish1/etime/desktop/',
-  channel: 'latest', 
+autoUpdater.setFeedURL({url : process.env.AWS_FEED_URL
 });
 
 //-------------------------------------------------------------------
