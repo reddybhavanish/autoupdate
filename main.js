@@ -40,9 +40,16 @@ function listS3Objects() {
 }
 listS3Objects();
 
-autoUpdater.setFeedURL({url : process.env.AWS_FEED_URL
+autoUpdater.setFeedURL({
+  provider: 's3',
+  url: 's3://bhavanish1/etime/desktop',
+  channel: 'latest', 
+  config: {
+    region: 'ap-south-1',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
 });
-
 //-------------------------------------------------------------------
 // Logging
 //
