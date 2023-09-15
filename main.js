@@ -4,7 +4,7 @@
 const {app, BrowserWindow, Menu} = require('electron');
 const log = require('electron-log');
 const config = require('config')
-const { autoUpdater } = require("@imjs/electron-differential-updater");
+const { autoUpdater } = require("electron-updater");
 const AWS = require("aws-sdk")
 const fs = require("fs");
 const aws4 = require("aws4");
