@@ -4,7 +4,7 @@
 const {app, BrowserWindow, Menu} = require('electron');
 const log = require('electron-log');
 const config = require('config')
-const {autoUpdater} = require("electron-updater");
+const { autoUpdater } = require("@imjs/electron-differential-updater");
 const AWS = require("aws-sdk")
 const fs = require("fs");
 const aws4 = require("aws4");
@@ -40,7 +40,11 @@ function listS3Objects() {
 }
 listS3Objects();
 
-
+autoUpdater.setFeedURL({
+  provider: 's3',
+  url: 's3://bhavanish1/etime/desktop/',
+  channel: 'latest', 
+});
 
 //-------------------------------------------------------------------
 // Logging
@@ -113,6 +117,7 @@ autoUpdater.on("checking-for-update", async () => {
   let opts = {
     region: "ap-south-1",
     protocol: "https:",
+    method: "get",
     hostname: "bhavanish1.s3.amazonaws.com",
     path: "/etime/desktop/latest.yml",
     host: "s3-ap-south-1.amazonaws.com"
