@@ -1,6 +1,6 @@
 {
   "name": "electron-updater-example",
-  "version": "1.1.50",
+  "version": "1.1.2",
   "main": "main.js",
   "description": "electron-updater example project",
   "scripts": {
@@ -25,14 +25,13 @@
     "publish": {
       "provider": "s3",
       "bucket": "bhavanish1",
-      "path": "etime/desktop/",
-      "region": "ap-south-1",
-      "endpoint": "https://s3.ap-south-1.amazonaws.com"
+      "path": "clockin/",
+      "region": "ap-south-1"
+      
     },
     "win": {
       "target": [
-        "nsis",
-        "portable"
+        "nsis"
       ]
     },
     "mac": {
